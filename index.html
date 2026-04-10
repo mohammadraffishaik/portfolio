@@ -1,133 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raffi | Embedded Cybersecurity Engineer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raffi | Embedded Cybersecurity Engineer</title>
 
-<style>
-<body>
-
-<!-- INTRO SCREEN -->
-<div id="intro">
-  <h1>Welcome to My World</h1>
-  <button onclick="enterWorld()">Enter</button>
-</div>
-
-<!-- MAIN PORTFOLIO -->
-<div id="mainContent">
-
-<section>
-  <h1>Explore My World</h1>
-  <p>Embedded Cybersecurity Engineer</p>
-  <p class="highlight">Secure Boot • OTA • IoT Security</p>
-</section>
-
-<section class="fade">
-  <h1>About Me</h1>
-  <p>I design and secure embedded systems for real-world applications.</p>
-</section>
-
-<section class="fade">
-  <h1>Resume</h1>
-  <a href="resume.pdf" target="_blank">Download Resume</a>
-</section>
-
-<section class="fade">
-  <h1>Contact</h1>
-  <p>Email: mohammadraffishaik40@gmail.com</p>
-</section>
-
-</div>
-
-section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  scroll-snap-align: start;
-}
-h1 {
-  font-size: 50px;
-  margin: 0;
-}
-
-p {
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-.highlight {
-  color: #00ffcc;
-}
-
-.fade {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 1.5s ease;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
-a {
-  color: white;
-  text-decoration: none;
-  margin: 5px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- HERO SECTION -->
-<section class="fade">
-  <h1>Explore My World</h1>
-  <p>Embedded Cybersecurity Engineer</p>
-  <p class="highlight">Secure Boot • OTA • IoT Security</p>
-</section>
-
-<!-- ABOUT -->
-<section class="fade">
-  <h1>About Me</h1>
-  <p>I design and secure embedded systems for real-world applications.</p>
-</section>
-
-<!-- PROJECTS -->
-<section class="fade">
-  <h1>My Work</h1>
-  <p>Secure Boot • OTA Updates • IoT Security</p>
-</section>
-
-<!-- CONTACT -->
-<section class="fade">
-  <h1>Contact</h1>
-  <p>Email: mohammadraffishaik40@gmail.com</p>
-  <p>
-    <a href="https://github.com/mohammadraffishaik" target="_blank">GitHub</a> |
-    <a href="https://linkedin.com/in/mohammadraffishaik" target="_blank">LinkedIn</a>
-  </p>
-</section>
-
-<script>
-const sections = document.querySelectorAll('.fade');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+      overflow: hidden;
     }
-  });
-});
 
-sections.forEach(section => {
-  observer.observe(section);
-});
-</script>
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #111 0%, #000 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+      animation: zoomAway 2.2s ease forwards;
+    }
 
+    #intro h1 {
+      font-size: 48px;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    #intro p {
+      margin-top: 14px;
+      font-size: 18px;
+      color: #cfcfcf;
+    }
+
+    #main {
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      text-align: center;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 54px;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      color: #00ffcc;
+      font-size: 20px;
+    }
+
+    a {
+      color: white;
+      font-size: 20px;
+    }
+
+    @keyframes zoomAway {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="intro">
+    <h1>Entering My World</h1>
+    <p>Embedded Cybersecurity • Firmware • IoT Security</p>
+  </div>
+
+  <div id="main">
+    <section>
+      <h2>Explore My World</h2>
+      <div class="sub">Embedded Cybersecurity Engineer</div>
+      <div class="highlight">Secure Boot • OTA • IoT Security</div>
+    </section>
+
+    <section>
+      <h2>About Me</h2>
+      <p>I design and secure embedded systems for real-world applications.</p>
+    </section>
+
+    <section>
+      <h2>Resume</h2>
+      <a href="resume.pdf" target="_blank">Download Resume</a>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>mohammadraffishaik40@gmail.com</p>
+      <p>GitHub: mohammadraffishaik</p>
+      <p>LinkedIn: mohammadraffishaik</p>
+    </section>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("main").style.opacity = "1";
+      document.body.style.overflow = "auto";
+    }, 2200);
+  </script>
 </body>
 </html>
