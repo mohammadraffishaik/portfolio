@@ -1,807 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohammad Raffi Shaik | Embedded Cybersecurity Engineer</title>
-  <meta name="description" content="Portfolio of Mohammad Raffi Shaik, Embedded Cybersecurity Engineer specializing in secure boot, OTA security, ARM Cortex-M, TLS, cryptography, and IoT security." />
-  <style>
-    :root {
-      --bg: #081120;
-      --bg2: #0d1b2a;
-      --card: rgba(255,255,255,0.06);
-      --line: rgba(255,255,255,0.12);
-      --text: #eaf2ff;
-      --muted: #b7c3d6;
-      --accent: #5eead4;
-      --accent2: #60a5fa;
-      --glow: 0 0 30px rgba(96,165,250,0.25);
-      --radius: 20px;
-      --max: 1160px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(96,165,250,0.18), transparent 30%),
-        radial-gradient(circle at top right, rgba(94,234,212,0.12), transparent 30%),
-        linear-gradient(135deg, var(--bg), var(--bg2));
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(92%, var(--max));
-      margin: 0 auto;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(8, 17, 32, 0.65);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-    }
-
-    .logo {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      transition: 0.25s ease;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .hero {
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 38px;
-      align-items: center;
-      padding: 64px 0;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid rgba(94,234,212,0.35);
-      background: rgba(94,234,212,0.08);
-      color: var(--accent);
-      border-radius: 999px;
-      font-size: 0.88rem;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: clamp(2.3rem, 6vw, 4.8rem);
-      line-height: 1.05;
-      margin-bottom: 18px;
-      letter-spacing: -1.5px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 700px;
-      margin-bottom: 28px;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 26px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 13px 20px;
-      border-radius: 14px;
-      font-weight: 600;
-      border: 1px solid transparent;
-      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-      color: #03101f;
-      box-shadow: var(--glow);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.12);
-      color: var(--text);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: var(--glow);
-    }
-
-    .stat-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-      color: var(--accent);
-    }
-
-    .stat-card p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .hero-panel {
-      position: relative;
-      perspective: 1000px;
-    }
-
-    .floating-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 24px;
-      padding: 26px;
-      min-height: 380px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.35), var(--glow);
-      transform-style: preserve-3d;
-      transition: transform 0.25s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .floating-card::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background: radial-gradient(circle, rgba(94,234,212,0.12), transparent 35%);
-      animation: pulse 5s infinite linear;
-    }
-
-    @keyframes pulse {
-      0% { transform: translate(-10%, -10%) scale(1); }
-      50% { transform: translate(10%, 10%) scale(1.15); }
-      100% { transform: translate(-10%, -10%) scale(1); }
-    }
-
-    .terminal-line {
-      position: relative;
-      z-index: 2;
-      font-family: Consolas, monospace;
-      color: #c7f9f1;
-      margin-bottom: 14px;
-      font-size: 0.95rem;
-    }
-
-    .terminal-line span {
-      color: #7dd3fc;
-    }
-
-    .chip-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .chip {
-      padding: 9px 12px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    section {
-      padding: 90px 0 20px;
-    }
-
-    .section-title {
-      font-size: clamp(1.7rem, 4vw, 2.8rem);
-      margin-bottom: 12px;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      max-width: 760px;
-      margin-bottom: 34px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 26px;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(94,234,212,0.28);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .skill-grid,
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .skill-card h4,
-    .project-card h4 {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      color: var(--accent);
-    }
-
-    .skill-list,
-    .project-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill-list span,
-    .project-list span {
-      display: inline-block;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.09);
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 18px;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 24px;
-      border-left: 2px solid rgba(94,234,212,0.22);
-      margin-left: 10px;
-    }
-
-    .timeline-item::before {
-      content: "";
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      left: -7px;
-      top: 8px;
-      box-shadow: 0 0 15px rgba(94,234,212,0.6);
-    }
-
-    .job-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-
-    .job-head .role {
-      font-weight: 700;
-      font-size: 1.08rem;
-    }
-
-    .job-head .date {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.94rem;
-    }
-
-    ul.clean {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 10px;
-    }
-
-    ul.clean li {
-      color: var(--muted);
-      margin-bottom: 8px;
-      position: relative;
-      padding-left: 18px;
-    }
-
-    ul.clean li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    .contact-box {
-      text-align: center;
-      padding: 36px;
-      background: linear-gradient(180deg, rgba(96,165,250,0.10), rgba(94,234,212,0.07));
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 24px;
-      margin-bottom: 80px;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    footer {
-      padding: 26px 0 50px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .grid-2,
-      .skill-grid,
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .nav-inner {
-        gap: 14px;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 2.4rem;
-      }
-
-      .card,
-      .floating-card,
-      .contact-box {
-        padding: 20px;
-      }
-
-      .cta-row {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raffi | Embedded Cybersecurity Engineer</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+  margin: 0;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.highlight {
+  color: #00ffcc;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  margin: 5px;
+}
+</style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <div class="container nav-inner">
-      <div class="logo">Mohammad <span>Raffi</span></div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <div class="container hero-grid">
-      <div class="reveal">
-        <div class="eyebrow">Embedded Security • Firmware Protection • IoT Security</div>
-        <h1>
-          Building <span class="gradient-text">secure embedded systems</span> for industrial and connected devices.
-        </h1>
-        <p>
-          I’m Mohammad Raffi Shaik, an Embedded Cybersecurity Engineer focused on secure boot, firmware authentication, secure OTA updates, cryptography, TLS communication, and embedded-to-cloud security.
-        </p>
+<!-- HERO SECTION -->
+<section class="fade">
+  <h1>Explore My World</h1>
+  <p>Embedded Cybersecurity Engineer</p>
+  <p class="highlight">Secure Boot • OTA • IoT Security</p>
+</section>
 
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#contact">Contact Me</a>
-          <a class="btn btn-secondary" href="#projects">View Projects</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/mohammadraffishaik" target="_blank">LinkedIn</a>
-          <a class="btn btn-secondary" href="https://github.com/mohammadraffishaik" target="_blank">GitHub</a>
-        </div>
+<!-- ABOUT -->
+<section class="fade">
+  <h1>About Me</h1>
+  <p>I design and secure embedded systems for real-world applications.</p>
+</section>
 
-        <div class="stats">
-          <div class="stat-card">
-            <h3>ARM</h3>
-            <p>Cortex-M embedded security experience</p>
-          </div>
-          <div class="stat-card">
-            <h3>OTA</h3>
-            <p>Secure firmware updates with rollback protection</p>
-          </div>
-          <div class="stat-card">
-            <h3>TLS</h3>
-            <p>Protected device-to-cloud communications</p>
-          </div>
-        </div>
-      </div>
+<!-- PROJECTS -->
+<section class="fade">
+  <h1>My Work</h1>
+  <p>Secure Boot • OTA Updates • IoT Security</p>
+</section>
 
-      <div class="hero-panel reveal">
-        <div class="floating-card" id="tiltCard">
-          <div class="terminal-line"><span>$</span> role = "Embedded Cybersecurity Engineer"</div>
-          <div class="terminal-line"><span>$</span> focus = ["Secure Boot", "OTA Security", "TLS", "Cryptography"]</div>
-          <div class="terminal-line"><span>$</span> platforms = ["Industrial Automation", "IoT Systems", "ARM Cortex-M"]</div>
-          <div class="terminal-line"><span>$</span> cloud = ["Azure", "Identity", "Secure Access Controls"]</div>
-          <div class="terminal-line"><span>$</span> status = "Open to strong opportunities"</div>
+<!-- CONTACT -->
+<section class="fade">
+  <h1>Contact</h1>
+  <p>Email: mohammadraffishaik40@gmail.com</p>
+  <p>
+    <a href="https://github.com/mohammadraffishaik" target="_blank">GitHub</a> |
+    <a href="https://linkedin.com/in/mohammadraffishaik" target="_blank">LinkedIn</a>
+  </p>
+</section>
 
-          <div class="chip-wrap">
-            <div class="chip">Secure Boot</div>
-            <div class="chip">ECC / RSA / AES / SHA</div>
-            <div class="chip">FreeRTOS</div>
-            <div class="chip">TARA</div>
-            <div class="chip">Firmware Signing</div>
-            <div class="chip">Azure Security</div>
-            <div class="chip">MQTT</div>
-            <div class="chip">TLS over TCP/IP</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+<script>
+const sections = document.querySelectorAll('.fade');
 
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title reveal">About Me</h2>
-      <p class="section-subtitle reveal">
-        I work at the intersection of embedded systems, device security, and cloud-connected applications. My background includes securing industrial electronic modules and IoT platforms with secure boot, firmware image verification, encrypted updates, secure communications, and hardened device identity workflows.
-      </p>
-
-      <div class="grid-2">
-        <div class="card reveal">
-          <h3>What I do</h3>
-          <p class="muted">
-            I design and support security controls across the device lifecycle — from secure startup and cryptographic verification to secure updates, manufacturing provisioning, and cloud-connected communications.
-          </p>
-        </div>
-        <div class="card reveal">
-          <h3>Professional Links</h3>
-          <p class="muted">
-            LinkedIn:
-            <a href="https://www.linkedin.com/in/mohammadraffishaik" target="_blank">mohammadraffishaik</a>
-            <br><br>
-            GitHub:
-            <a href="https://github.com/mohammadraffishaik" target="_blank">mohammadraffishaik</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2 class="section-title reveal">Core Skills</h2>
-      <p class="section-subtitle reveal">
-        A blend of firmware, security engineering, cryptography, and embedded-to-cloud protection.
-      </p>
-
-      <div class="skill-grid">
-        <div class="card skill-card reveal">
-          <h4>Embedded Security</h4>
-          <div class="skill-list">
-            <span>Secure Boot</span>
-            <span>Root of Trust</span>
-            <span>Firmware Validation</span>
-            <span>Secure SDLC</span>
-            <span>Threat Modeling</span>
-            <span>TARA</span>
-          </div>
-        </div>
-
-        <div class="card skill-card reveal">
-          <h4>Firmware & Systems</h4>
-          <div class="skill-list">
-            <span>Embedded C</span>
-            <span>C++</span>
-            <span>FreeRTOS</span>
-            <span>Bare Metal</span>
-            <span>ARM Cortex-M</span>
-            <span>Bootloader Design</span>
-          </div>
-        </div>
-
-        <div class="card skill-card reveal">
-          <h4>Crypto & Secure Comms</h4>
-          <div class="skill-list">
-            <span>AES</span>
-            <span>RSA</span>
-            <span>ECC</span>
-            <span>SHA</span>
-            <span>TLS</span>
-            <span>MQTT</span>
-            <span>TCP/IP</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2 class="section-title reveal">Featured Projects</h2>
-      <p class="section-subtitle reveal">
-        These project highlights are based on the security and firmware work described in your resume.
-      </p>
-
-      <div class="project-grid">
-        <div class="card project-card reveal">
-          <h4>Secure Boot Architecture</h4>
-          <p class="muted">
-            Designed secure boot workflows for ARM Cortex-M systems by establishing root-of-trust and validating firmware integrity during power-up to block unauthorized code execution.
-          </p>
-          <div class="project-list" style="margin-top:14px;">
-            <span>Root of Trust</span>
-            <span>Firmware Signing</span>
-            <span>Integrity Checks</span>
-          </div>
-        </div>
-
-        <div class="card project-card reveal">
-          <h4>Secure OTA / FOTA Framework</h4>
-          <p class="muted">
-            Built secure update mechanisms with encryption, version validation, rollback protection, and recovery considerations to support safe field deployment without device bricking.
-          </p>
-          <div class="project-list" style="margin-top:14px;">
-            <span>Encrypted Updates</span>
-            <span>Rollback Protection</span>
-            <span>Recovery Handling</span>
-          </div>
-        </div>
-
-        <div class="card project-card reveal">
-          <h4>IoT Communication Security</h4>
-          <p class="muted">
-            Protected device-to-cloud and device-to-gateway communications using TLS-based security over TCP/IP, while supporting authenticated MQTT telemetry and secure backend/API interactions.
-          </p>
-          <div class="project-list" style="margin-top:14px;">
-            <span>TLS</span>
-            <span>MQTT Auth</span>
-            <span>API Security</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="container">
-      <h2 class="section-title reveal">Experience</h2>
-      <p class="section-subtitle reveal">
-        Hands-on work across industrial automation, embedded firmware, IoT security, and secure cloud-connected systems.
-      </p>
-
-      <div class="timeline">
-        <div class="card timeline-item reveal">
-          <div class="job-head">
-            <div>
-              <div class="role">Embedded Cybersecurity Engineer — Molex, Lisle, IL</div>
-              <div class="muted">Industrial automation and intelligent interconnect device security</div>
-            </div>
-            <div class="date">Aug 2024 – Present</div>
-          </div>
-          <ul class="clean">
-            <li>Designed secure boot architecture and firmware authentication using ECC/RSA validation.</li>
-            <li>Implemented secure OTA/FOTA update workflows with encryption, version control, and rollback protection.</li>
-            <li>Integrated TLS-based communications to secure embedded devices, gateways, and backend services.</li>
-            <li>Applied AES-based protection for sensitive configuration data, credentials, and runtime parameters.</li>
-            <li>Performed TARA-driven threat modeling across bootloader, debug interfaces, memory access, and update paths.</li>
-            <li>Hardened production firmware by disabling unused peripherals and locking JTAG/SWD access.</li>
-            <li>Supported Azure security controls including identity management, secret handling, and access controls.</li>
-          </ul>
-        </div>
-
-        <div class="card timeline-item reveal">
-          <div class="job-head">
-            <div>
-              <div class="role">Embedded Firmware & Security Engineer — Efftronics Systems Pvt. Ltd., India</div>
-              <div class="muted">Firmware development and foundational embedded security</div>
-            </div>
-            <div class="date">Jun 2021 – Jul 2023</div>
-          </div>
-          <ul class="clean">
-            <li>Developed embedded firmware in C for ARM-based industrial monitoring and control devices.</li>
-            <li>Built bootloader/application separation to support upgrades, recovery flows, and field servicing.</li>
-            <li>Implemented firmware integrity checks during boot and update cycles.</li>
-            <li>Integrated TLS-encrypted communication and secure MQTT-based telemetry workflows.</li>
-            <li>Applied AES encryption for credentials, configuration data, and calibration values.</li>
-            <li>Improved interface hardening for UART, SPI, and I2C communications.</li>
-            <li>Resolved memory leaks, stack issues, timing problems, and race conditions in real-time systems.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="container">
-      <h2 class="section-title reveal">Education</h2>
-      <div class="grid-2">
-        <div class="card reveal">
-          <h3>Master’s in Computer Information Technology</h3>
-          <p class="muted">Elmhurst University, Illinois</p>
-          <p style="margin-top:8px; color: var(--accent); font-weight: 600;">May 2025</p>
-        </div>
-        <div class="card reveal">
-          <h3>Bachelor’s in Electronics and Communication Engineering</h3>
-          <p class="muted">Narasaraopeta Engineering College</p>
-          <p style="margin-top:8px; color: var(--accent); font-weight: 600;">April 2023</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="contact-box reveal">
-        <h2 class="section-title" style="margin-bottom: 10px;">Let’s Connect</h2>
-        <p class="muted" style="max-width: 700px; margin: 0 auto;">
-          I’m interested in embedded security, firmware engineering, and cybersecurity opportunities where I can contribute to secure product development across devices and connected platforms.
-        </p>
-
-        <div class="contact-links">
-          <a class="btn btn-primary" href="mailto:mohammadraffishaik40@gmail.com">Email Me</a>
-          <a class="btn btn-secondary" href="tel:+13126875452">Call Me</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/mohammadraffishaik" target="_blank">LinkedIn</a>
-          <a class="btn btn-secondary" href="https://github.com/mohammadraffishaik" target="_blank">GitHub</a>
-          <a class="btn btn-secondary" href="resume.pdf" target="_blank">Download Resume</a>
-        </div>
-
-        <p style="margin-top: 18px; color: var(--muted);">
-          Email: mohammadraffishaik40@gmail.com | Phone: (312) 687-5452
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      © 2026 Mohammad Raffi Shaik • Embedded Cybersecurity Engineer
-    </div>
-  </footer>
-
-  <script>
-    const revealItems = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-
-    revealItems.forEach((item) => observer.observe(item));
-
-    const tiltCard = document.getElementById('tiltCard');
-    if (tiltCard) {
-      tiltCard.addEventListener('mousemove', (e) => {
-        const rect = tiltCard.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const rotateX = ((y / rect.height) - 0.5) * -10;
-        const rotateY = ((x / rect.width) - 0.5) * 10;
-        tiltCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      tiltCard.addEventListener('mouseleave', () => {
-        tiltCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
     }
-  </script>
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+</script>
+
 </body>
 </html>
